@@ -76,9 +76,14 @@ const mostExpensiveFish = (pFishes) => {
 
 //8) From which country do the fish that can stand for the longest time come from?
 const durationFishes = (pFishes) => {
-  const duration = pFishes.map((fish) => fish.durationInDays);
+  const duration = pFishes
+    .map((fish) => fish.durationInDays)
+    .sort((fish1, fish2) => fish2 - fish1)[0];
 
-  return Math.max(...duration);
+  return pFishes
+    .filter((fish) => fish.durationInDays === duration)
+    .map((fish) => fish.fishType)
+    .toString();
 };
 
 //9) What is the average price of fish sold in the Romandy for the winter and fall season? (ROMANDY kanton = GE, VD, VU, NE)
